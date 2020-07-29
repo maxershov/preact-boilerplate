@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
-import React, {render} from 'preact/compat';
+import React, { render } from 'preact/compat';
 
 import App from './App';
 

@@ -1,11 +1,15 @@
 import React from 'preact/compat';
 import './App.css';
 
-import Hello from './Components/Hello';
+import Classes from './Components/Classes';
+import Hooks from './Components/Hooks';
 
 const App = (props) => {
   return (
-    <Hello></Hello>
+    <>
+      <Classes />
+      <Hooks />
+    </>
   );
 }
 
