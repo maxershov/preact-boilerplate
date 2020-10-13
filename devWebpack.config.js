@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -45,12 +46,7 @@ module.exports = {
           { loader: MiniCssExtractPlugin.loader },
           { loader: "css-loader", options: { importLoaders: 1 } },
           {
-            loader: "postcss-loader",
-            options: {
-              config: {
-                path: "postcss.config.js"
-              }
-            }
+            loader: "postcss-loader"
           }
         ]
       },
