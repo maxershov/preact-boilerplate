@@ -3,6 +3,46 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+
+
+const js = {
+  test: /\(.js|.jsx?$/,
+  loader: require.resolve("babel-loader"),
+  exclude: [/node_modules/]
+};
+
+const scss = {
+  test: /\.(sc|c)ss$/,
+  use: [
+    MiniCssExtractPlugin.loader,
+    { loader: 'css-loader', options: { importLoaders: 1 } },
+    'postcss-loader',
+    'sass-loader',
+  ]
+};
+
+const imgs = {
+  test: /\.(jpeg|jpg|png|gif|webp|svg)$/i,
+  use: [{
+    loader: 'file-loader',
+    options: {
+      name: '[name].[ext]',
+      outputPath: 'images/',
+      esModule: false
+    }
+  }]
+};
+
+const etc = {
+  loader: require.resolve("file-loader"),
+  exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/, /\.(sc|c)ss$/],
+  options: {
+    name: "static/media/[name].[hash:8].[ext]",
+    esModule: false // fix problem with img [object Module] in browser
+  }
+};
+
+
 module.exports = {
   context: path.resolve(__dirname),
   mode: "development",
@@ -34,30 +74,7 @@ module.exports = {
     },
   },
   module: {
-    rules: [
-      {
-        test: /\(.js|.jsx?$/,
-        loader: require.resolve("babel-loader"),
-        exclude: [/node_modules/]
-      },
-      {
-        test: /\.(sc|c)ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          { loader: 'css-loader', options: { importLoaders: 1 } },
-          'postcss-loader',
-          'sass-loader',
-        ]
-      },
-      {
-        loader: require.resolve("file-loader"),
-        exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/, /\.(sc|c)ss$/],
-        options: {
-          name: "static/media/[name].[hash:8].[ext]",
-          esModule: false // fix problem with img [object Module] in browser
-        }
-      }
-    ]
+    rules: [js, scss, imgs, etc]
   },
   plugins: [
     new HtmlWebpackPlugin({
