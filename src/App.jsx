@@ -1,5 +1,5 @@
 import React from 'preact/compat';
-import './App.css';
+import './App.scss';
 import Classes from './Components/Classes';
 import Hooks from './Components/Hooks';
 
