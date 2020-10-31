@@ -49,7 +49,7 @@ module.exports = {
   mode: "production",
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "[name].bundle.js",
+    filename: '[name].[contenthash].bundle.js',
     publicPath: "/"
   },
   resolve: {
@@ -95,6 +95,6 @@ module.exports = {
       },
       parallel: true
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' })
   ]
 };
