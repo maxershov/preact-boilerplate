@@ -9,6 +9,8 @@
       1,
       "prefer-double"
     ],
+    "import/no-unresolved": "off",
+    "import/prefer-default-export":"off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/prop-types": 0,
     "react/jsx-one-expression-per-line": "off",
